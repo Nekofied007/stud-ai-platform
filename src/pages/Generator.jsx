@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { Video, FileText, BrainCircuit, List, Loader2, CheckCircle, ArrowLeft, Play, Sparkles } from 'lucide-react';
 import './Generator.css';
+import VideoChat from '../components/VideoChat';
+import '../components/VideoChat.css';
 
 const Generator = () => {
   const [searchParams] = useSearchParams();
@@ -581,6 +583,7 @@ const Generator = () => {
             ))}
           </div>
         </div>
+        <VideoChat videoTitle={generatedLesson.title} videoId={videoId} notes={generatedLesson.notes} />
       </div>
     );
   }
@@ -830,6 +833,7 @@ const Generator = () => {
             </div>
           </div>
         </div>
+        <VideoChat videoTitle={generatedLesson.title} videoId={videoId} notes={generatedLesson.notes} />
       </div>
     );
   }
@@ -923,6 +927,8 @@ const Generator = () => {
                     </div>
                   </div>
                 </div>
+                {/* Floating AI chat anchored bottom-right for this page */}
+                <VideoChat videoTitle={generatedLesson.title} videoId={videoId} notes={generatedLesson.notes} />
               </div>
             )}
 

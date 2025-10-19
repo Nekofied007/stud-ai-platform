@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Home, BookOpen, Sparkles, GraduationCap, BarChart3 } from 'lucide-react';
 import { cn } from '../lib/utils';
+import ThemeToggle from './ThemeToggle';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -77,6 +78,9 @@ const Navbar = () => {
             </Link>
           );
         })}
+      </div>
+      <div className="navbar-theme-toggle">
+        <ThemeToggle />
       </div>
     </div>
   );

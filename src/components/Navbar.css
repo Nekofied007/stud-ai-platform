@@ -7,12 +7,24 @@
   z-index: 1000;
   padding-top: 1.5rem;
   width: 100%;
-  max-width: fit-content;
+  max-width: 1200px;
   pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .navbar-wrapper > * {
   pointer-events: auto;
+}
+
+/* Theme Toggle Container */
+.navbar-theme-toggle {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Mobile positioning */
@@ -22,6 +34,14 @@
     bottom: 0;
     padding-top: 0;
     padding-bottom: 1.5rem;
+    justify-content: center;
+  }
+  
+  .navbar-theme-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }/* Animated Navbar Container */
 .navbar-animated {

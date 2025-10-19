@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
-import AIChat from './components/AIChat';
 import Home from './pages/Home';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
@@ -27,25 +27,26 @@ function App() {
   }, []);
 
   return (
-    <Router>
-      <div className="app">
-        <Logo />
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/course/:courseId" element={<CourseDetail />} />
-            <Route path="/learn/:courseId" element={<Learn />} />
-            <Route path="/my-learning" element={<MyLearning />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/generator" element={<Generator />} />
-          </Routes>
-        </main>
-        <Footer />
-        <AIChat />
-      </div>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <div className="app">
+          <Logo />
+          <Navbar />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/course/:courseId" element={<CourseDetail />} />
+              <Route path="/learn/:courseId" element={<Learn />} />
+              <Route path="/my-learning" element={<MyLearning />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/generator" element={<Generator />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 
