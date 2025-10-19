@@ -272,13 +272,33 @@
   gap: var(--spacing-md);
   font-size: 1.75rem;
   color: var(--color-text-dark);
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
   text-align: center;
 }
 
 .recommended-title svg {
   color: var(--color-primary-orange);
   animation: pulse 2s ease-in-out infinite;
+}
+
+.recommendation-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  color: var(--color-text-light);
+  font-size: 0.95rem;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  padding: var(--spacing-md);
+  background-color: rgba(91, 155, 213, 0.05);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary-blue);
+}
+
+.recommendation-note svg {
+  color: var(--color-primary-blue);
+  flex-shrink: 0;
 }
 
 @keyframes pulse {
