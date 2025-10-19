@@ -21,10 +21,7 @@
   display: inline-block !important;
   font-size: 2.5rem !important;
   font-weight: 800 !important;
-  background: linear-gradient(135deg, var(--color-primary-orange), var(--color-primary-green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #1a1a1a !important;
   letter-spacing: 0.02em;
   line-height: 1 !important;
   margin: 0 !important;
@@ -35,6 +32,7 @@
   font-weight: 800;
   position: relative;
   z-index: 1;
+  color: #1a1a1a;
 }
 
 /* Logo Tagline */
