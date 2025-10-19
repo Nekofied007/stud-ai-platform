@@ -1,98 +1,84 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BookOpen, User, LogOut } from 'lucide-react';
+import { Home, BookOpen, Sparkles, GraduationCap, BarChart3 } from 'lucide-react';
+import { cn } from '../lib/utils';
 import './Navbar.css';
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const location = useLocation();
+  const [activeTab, setActiveTab] = useState('Home');
+  const [isMobile, setIsMobile] = useState(false);
 
-  const isActive = (path) => location.pathname === path;
+  const navItems = [
+    { name: 'Home', url: '/', icon: Home },
+    { name: 'Courses', url: '/courses', icon: BookOpen },
+    { name: 'AI Generator', url: '/generator', icon: Sparkles },
+    { name: 'My Learning', url: '/my-learning', icon: GraduationCap },
+    { name: 'Analytics', url: '/analytics', icon: BarChart3 },
+  ];
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-  const toggleUserMenu = () => setIsUserMenuOpen(!isUserMenuOpen);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    const currentItem = navItems.find(item => item.url === location.pathname);
+    if (currentItem) {
+      setActiveTab(currentItem.name);
+    }
+  }, [location.pathname]);
 
   return (
-    <nav className="navbar">
-      <div className="container navbar-container">
-        <Link to="/" className="navbar-brand">
-          <BookOpen size={32} />
-          <div className="brand-text">
-            <span className="brand-name">STUD</span>
-            <span className="brand-tagline">From Confusion to Clarity</span>
-          </div>
-        </Link>
+    <div className="navbar-wrapper">
+      <div className="navbar-animated">
+        {navItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = activeTab === item.name;
 
-        <div className="navbar-desktop">
-          <div className="navbar-links">
-            <Link to="/" className={isActive('/') ? 'active' : ''}>
-              Home
-            </Link>
-            <Link to="/courses" className={isActive('/courses') ? 'active' : ''}>
-              Courses
-            </Link>
-            <Link to="/generator" className={isActive('/generator') ? 'active' : ''}>
-              AI Generator
-            </Link>
-            <Link to="/my-learning" className={isActive('/my-learning') ? 'active' : ''}>
-              My Learning
-            </Link>
-            <Link to="/analytics" className={isActive('/analytics') ? 'active' : ''}>
-              Analytics
-            </Link>
-          </div>
-
-          <div className="navbar-actions">
-            <button className="btn-primary">Start Learning</button>
-            <div className="user-menu">
-              <button className="user-avatar" onClick={toggleUserMenu}>
-                <User size={20} />
-              </button>
-              {isUserMenuOpen && (
-                <div className="user-dropdown">
-                  <Link to="/profile" onClick={toggleUserMenu}>
-                    <User size={16} />
-                    Profile
-                  </Link>
-                  <button>
-                    <LogOut size={16} />
-                    Logout
-                  </button>
-                </div>
+          return (
+            <Link
+              key={item.name}
+              to={item.url}
+              onClick={() => setActiveTab(item.name)}
+              className={cn(
+                'nav-item',
+                isActive && 'nav-item-active'
               )}
-            </div>
-          </div>
-        </div>
-
-        <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+            >
+              <span className="nav-item-text">{item.name}</span>
+              <span className="nav-item-icon">
+                <Icon size={18} strokeWidth={2.5} />
+              </span>
+              {isActive && (
+                <motion.div
+                  layoutId="lamp"
+                  className="nav-item-indicator"
+                  initial={false}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 300,
+                    damping: 30,
+                  }}
+                >
+                  <div className="nav-lamp">
+                    <div className="nav-lamp-glow-large" />
+                    <div className="nav-lamp-glow-medium" />
+                    <div className="nav-lamp-glow-small" />
+                  </div>
+                </motion.div>
+              )}
+            </Link>
+          );
+        })}
       </div>
-
-      {isMobileMenuOpen && (
-        <div className="mobile-menu">
-          <Link to="/" onClick={toggleMobileMenu} className={isActive('/') ? 'active' : ''}>
-            Home
-          </Link>
-          <Link to="/courses" onClick={toggleMobileMenu} className={isActive('/courses') ? 'active' : ''}>
-            Courses
-          </Link>
-          <Link to="/generator" onClick={toggleMobileMenu} className={isActive('/generator') ? 'active' : ''}>
-            AI Generator
-          </Link>
-          <Link to="/my-learning" onClick={toggleMobileMenu} className={isActive('/my-learning') ? 'active' : ''}>
-            My Learning
-          </Link>
-          <Link to="/analytics" onClick={toggleMobileMenu} className={isActive('/analytics') ? 'active' : ''}>
-            Analytics
-          </Link>
-          <button className="btn-primary" style={{ width: '100%' }}>
-            Start Learning
-          </button>
-        </div>
-      )}
-    </nav>
+    </div>
   );
 };
 
