@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { Video, FileText, BrainCircuit, List, Loader2, CheckCircle, ArrowLeft, Play } from 'lucide-react';
+import { Video, FileText, BrainCircuit, List, Loader2, CheckCircle, ArrowLeft, Play, Sparkles } from 'lucide-react';
 import './Generator.css';
 
 const Generator = () => {
@@ -11,6 +11,9 @@ const Generator = () => {
   const [videoUrl, setVideoUrl] = useState('');
   const [videoId, setVideoId] = useState('');
   const [hasGenerated, setHasGenerated] = useState(false);
+  const [inputMode, setInputMode] = useState('url'); // 'url' or 'topic'
+  const [topic, setTopic] = useState('');
+  const [recommendedVideos, setRecommendedVideos] = useState([]);
 
   const processingSteps = [
     'Analyzing video content...',
@@ -19,6 +22,93 @@ const Generator = () => {
     'Building your notes...',
     'Creating curated playlist...'
   ];
+
+  // Mock function to get recommended videos based on topic
+  const getRecommendedVideos = (searchTopic) => {
+    const videoDatabase = {
+      'array': [
+        { id: 1, title: 'Data Structures: Arrays Explained', videoId: 'RBSGKlAvoiM', channel: 'CS Dojo', duration: '22:15', views: '1.2M', thumbnail: 'https://img.youtube.com/vi/RBSGKlAvoiM/mqdefault.jpg' },
+        { id: 2, title: 'Array Methods Every Developer Should Know', videoId: 'R8rmfD9Y5-c', channel: 'Web Dev Simplified', duration: '18:42', views: '856K', thumbnail: 'https://img.youtube.com/vi/R8rmfD9Y5-c/mqdefault.jpg' },
+        { id: 3, title: 'Master Arrays in JavaScript', videoId: 'oigfaZ5ApsM', channel: 'Traversy Media', duration: '25:30', views: '654K', thumbnail: 'https://img.youtube.com/vi/oigfaZ5ApsM/mqdefault.jpg' },
+        { id: 4, title: 'Arrays vs Linked Lists', videoId: 'DyG9S9nAlUM', channel: 'Fireship', duration: '8:15', views: '923K', thumbnail: 'https://img.youtube.com/vi/DyG9S9nAlUM/mqdefault.jpg' },
+        { id: 5, title: 'Advanced Array Techniques', videoId: 'g1ial5LkbDc', channel: 'The Coding Train', duration: '32:18', views: '412K', thumbnail: 'https://img.youtube.com/vi/g1ial5LkbDc/mqdefault.jpg' }
+      ],
+      'web development': [
+        { id: 1, title: 'Web Development Full Course 2024', videoId: 'zJSY8tbf_ys', channel: 'freeCodeCamp', duration: '4:12:32', views: '5.2M', thumbnail: 'https://img.youtube.com/vi/zJSY8tbf_ys/mqdefault.jpg' },
+        { id: 2, title: 'HTML & CSS Crash Course', videoId: 'hu-q2zYwEYs', channel: 'Traversy Media', duration: '1:28:15', views: '3.1M', thumbnail: 'https://img.youtube.com/vi/hu-q2zYwEYs/mqdefault.jpg' },
+        { id: 3, title: 'JavaScript for Beginners', videoId: 'W6NZfCO5SIk', channel: 'Programming with Mosh', duration: '1:41:23', views: '2.8M', thumbnail: 'https://img.youtube.com/vi/W6NZfCO5SIk/mqdefault.jpg' },
+        { id: 4, title: 'Build a Modern Website from Scratch', videoId: 'mU6anWqZJcc', channel: 'DesignCourse', duration: '2:15:42', views: '1.9M', thumbnail: 'https://img.youtube.com/vi/mU6anWqZJcc/mqdefault.jpg' },
+        { id: 5, title: 'Web Development Roadmap 2024', videoId: 'ysEN5RaKOlA', channel: 'Fireship', duration: '12:45', views: '4.5M', thumbnail: 'https://img.youtube.com/vi/ysEN5RaKOlA/mqdefault.jpg' }
+      ],
+      'python': [
+        { id: 1, title: 'Python for Beginners - Full Course', videoId: '_uQrJ0TkZlc', channel: 'Programming with Mosh', duration: '6:14:07', views: '18M', thumbnail: 'https://img.youtube.com/vi/_uQrJ0TkZlc/mqdefault.jpg' },
+        { id: 2, title: 'Learn Python in 1 Hour', videoId: 'kqtD5dpn9C8', channel: 'Programming with Mosh', duration: '1:00:05', views: '8.5M', thumbnail: 'https://img.youtube.com/vi/kqtD5dpn9C8/mqdefault.jpg' },
+        { id: 3, title: 'Python Tutorial for Absolute Beginners', videoId: 'Z1Yd7upQsXY', channel: 'CS Dojo', duration: '11:23', views: '3.2M', thumbnail: 'https://img.youtube.com/vi/Z1Yd7upQsXY/mqdefault.jpg' },
+        { id: 4, title: 'Python OOP Tutorial', videoId: 'Ej_02ICOIgs', channel: 'Tech With Tim', duration: '45:18', views: '1.1M', thumbnail: 'https://img.youtube.com/vi/Ej_02ICOIgs/mqdefault.jpg' },
+        { id: 5, title: '100 Seconds of Python', videoId: 'x7X9w_GIm1s', channel: 'Fireship', duration: '2:15', views: '2.8M', thumbnail: 'https://img.youtube.com/vi/x7X9w_GIm1s/mqdefault.jpg' }
+      ],
+      'react': [
+        { id: 1, title: 'React Course - Beginner\'s Tutorial', videoId: 'bMknfKXIFA8', channel: 'freeCodeCamp', duration: '11:55:27', views: '7.2M', thumbnail: 'https://img.youtube.com/vi/bMknfKXIFA8/mqdefault.jpg' },
+        { id: 2, title: 'React in 100 Seconds', videoId: 'Tn6-PIqc4UM', channel: 'Fireship', duration: '2:38', views: '1.9M', thumbnail: 'https://img.youtube.com/vi/Tn6-PIqc4UM/mqdefault.jpg' },
+        { id: 3, title: 'React Hooks Full Course 2024', videoId: 'LlvBzyy-558', channel: 'Programming with Mosh', duration: '1:32:45', views: '2.4M', thumbnail: 'https://img.youtube.com/vi/LlvBzyy-558/mqdefault.jpg' },
+        { id: 4, title: 'Build a Real-World React App', videoId: 'Law7wfdg_ls', channel: 'Traversy Media', duration: '3:28:42', views: '1.5M', thumbnail: 'https://img.youtube.com/vi/Law7wfdg_ls/mqdefault.jpg' },
+        { id: 5, title: 'React Tutorial for Beginners', videoId: 'SqcY0GlETPk', channel: 'Programming with Mosh', duration: '2:24:35', views: '5.8M', thumbnail: 'https://img.youtube.com/vi/SqcY0GlETPk/mqdefault.jpg' }
+      ],
+      'javascript': [
+        { id: 1, title: 'JavaScript Full Course for Beginners', videoId: 'PkZNo7MFNFg', channel: 'freeCodeCamp', duration: '7:42:15', views: '9.1M', thumbnail: 'https://img.youtube.com/vi/PkZNo7MFNFg/mqdefault.jpg' },
+        { id: 2, title: 'JavaScript Crash Course', videoId: 'hdI2bqOjy3c', channel: 'Traversy Media', duration: '1:40:08', views: '3.5M', thumbnail: 'https://img.youtube.com/vi/hdI2bqOjy3c/mqdefault.jpg' },
+        { id: 3, title: 'Modern JavaScript Tutorial', videoId: 'iWOYAxlnaww', channel: 'Net Ninja', duration: '55:32', views: '2.1M', thumbnail: 'https://img.youtube.com/vi/iWOYAxlnaww/mqdefault.jpg' },
+        { id: 4, title: 'JavaScript ES6+ Features', videoId: 'nZ1DMMsyVyI', channel: 'Web Dev Simplified', duration: '32:15', views: '1.3M', thumbnail: 'https://img.youtube.com/vi/nZ1DMMsyVyI/mqdefault.jpg' },
+        { id: 5, title: 'Async JavaScript Tutorial', videoId: 'PoRJizFvM7s', channel: 'The Coding Train', duration: '28:47', views: '856K', thumbnail: 'https://img.youtube.com/vi/PoRJizFvM7s/mqdefault.jpg' }
+      ],
+      'machine learning': [
+        { id: 1, title: 'Machine Learning for Beginners', videoId: 'i_LwzRVP7bg', channel: 'freeCodeCamp', duration: '3:26:56', views: '2.8M', thumbnail: 'https://img.youtube.com/vi/i_LwzRVP7bg/mqdefault.jpg' },
+        { id: 2, title: 'Machine Learning Basics Explained', videoId: 'ukzFI9rgwfU', channel: 'StatQuest', duration: '15:12', views: '1.5M', thumbnail: 'https://img.youtube.com/vi/ukzFI9rgwfU/mqdefault.jpg' },
+        { id: 3, title: 'Deep Learning Crash Course', videoId: 'VyWAvY2CF9c', channel: 'Google Developers', duration: '42:38', views: '923K', thumbnail: 'https://img.youtube.com/vi/VyWAvY2CF9c/mqdefault.jpg' },
+        { id: 4, title: 'Neural Networks Explained', videoId: 'aircAruvnKk', channel: '3Blue1Brown', duration: '19:13', views: '8.2M', thumbnail: 'https://img.youtube.com/vi/aircAruvnKk/mqdefault.jpg' },
+        { id: 5, title: 'TensorFlow 2.0 Complete Course', videoId: 'tPYj3fFJGjk', channel: 'freeCodeCamp', duration: '3:55:23', views: '1.9M', thumbnail: 'https://img.youtube.com/vi/tPYj3fFJGjk/mqdefault.jpg' }
+      ],
+      'data structures': [
+        { id: 1, title: 'Data Structures Full Course', videoId: 'RBSGKlAvoiM', channel: 'freeCodeCamp', duration: '2:35:18', views: '3.2M', thumbnail: 'https://img.youtube.com/vi/RBSGKlAvoiM/mqdefault.jpg' },
+        { id: 2, title: 'Data Structures Easy to Advanced', videoId: 'B31LgI4Y4DQ', channel: 'William Fiset', duration: '13:42:56', views: '1.8M', thumbnail: 'https://img.youtube.com/vi/B31LgI4Y4DQ/mqdefault.jpg' },
+        { id: 3, title: 'Trees and Graphs Explained', videoId: 'oSWTXtMglKE', channel: 'CS Dojo', duration: '28:15', views: '956K', thumbnail: 'https://img.youtube.com/vi/oSWTXtMglKE/mqdefault.jpg' },
+        { id: 4, title: 'Hash Tables and Hash Maps', videoId: 'shs0KM3wKv8', channel: 'CS50', duration: '22:42', views: '723K', thumbnail: 'https://img.youtube.com/vi/shs0KM3wKv8/mqdefault.jpg' },
+        { id: 5, title: 'Linked Lists Crash Course', videoId: 'F8AbOfQwl1c', channel: 'HackerRank', duration: '15:38', views: '634K', thumbnail: 'https://img.youtube.com/vi/F8AbOfQwl1c/mqdefault.jpg' }
+      ],
+      'css': [
+        { id: 1, title: 'CSS Full Course for Beginners', videoId: 'OXGznpKZ_sA', channel: 'freeCodeCamp', duration: '11:02:05', views: '2.5M', thumbnail: 'https://img.youtube.com/vi/OXGznpKZ_sA/mqdefault.jpg' },
+        { id: 2, title: 'CSS Flexbox Tutorial', videoId: 'JJSoEo8JSnc', channel: 'Traversy Media', duration: '32:15', views: '1.8M', thumbnail: 'https://img.youtube.com/vi/JJSoEo8JSnc/mqdefault.jpg' },
+        { id: 3, title: 'CSS Grid Layout Crash Course', videoId: 'jV8B24rSN5o', channel: 'Traversy Media', duration: '28:42', views: '1.2M', thumbnail: 'https://img.youtube.com/vi/jV8B24rSN5o/mqdefault.jpg' },
+        { id: 4, title: 'Modern CSS Design Techniques', videoId: 'D-h8L5hgW-w', channel: 'DesignCourse', duration: '45:23', views: '856K', thumbnail: 'https://img.youtube.com/vi/D-h8L5hgW-w/mqdefault.jpg' },
+        { id: 5, title: 'CSS Animations Tutorial', videoId: 'zHUpx90NerM', channel: 'Web Dev Simplified', duration: '18:30', views: '623K', thumbnail: 'https://img.youtube.com/vi/zHUpx90NerM/mqdefault.jpg' }
+      ]
+    };
+
+    // Search for matching topic (case-insensitive)
+    const normalizedTopic = searchTopic.toLowerCase().trim();
+    
+    // Direct match
+    if (videoDatabase[normalizedTopic]) {
+      return videoDatabase[normalizedTopic];
+    }
+    
+    // Partial match
+    for (const [key, videos] of Object.entries(videoDatabase)) {
+      if (normalizedTopic.includes(key) || key.includes(normalizedTopic)) {
+        return videos;
+      }
+    }
+    
+    // Default fallback - return web development videos
+    return videoDatabase['web development'];
+  };
+
+  const handleTopicSearch = () => {
+    if (topic.trim()) {
+      const videos = getRecommendedVideos(topic);
+      setRecommendedVideos(videos);
+    }
+  };
 
   useEffect(() => {
     const url = searchParams.get('url');
@@ -445,58 +535,207 @@ const Generator = () => {
         <div className="generator-content">
           <div className="container">
             <div className="generator-input-container">
-              <div className="input-instructions">
-                <Video size={48} className="instruction-icon" />
-                <h2>Paste a YouTube Video URL</h2>
-                <p>We'll analyze the video and create a complete lesson with notes, quizzes, and a curated playlist.</p>
-              </div>
-
-              <form className="generator-form" onSubmit={(e) => {
-                e.preventDefault();
-                if (videoUrl.trim()) {
-                  window.location.href = `/generator?url=${encodeURIComponent(videoUrl)}`;
-                }
-              }}>
-                <div className="url-input-wrapper">
-                  <Video size={24} className="input-icon" />
-                  <input
-                    type="url"
-                    placeholder="https://www.youtube.com/watch?v=..."
-                    value={videoUrl}
-                    onChange={(e) => setVideoUrl(e.target.value)}
-                    className="url-input"
-                    required
-                  />
-                </div>
-                <button type="submit" className="btn-primary btn-large btn-generate">
-                  <BrainCircuit size={20} />
-                  Generate Lesson
+              {/* Mode Toggle */}
+              <div className="input-mode-toggle">
+                <button 
+                  className={`mode-btn ${inputMode === 'url' ? 'active' : ''}`}
+                  onClick={() => {
+                    setInputMode('url');
+                    setRecommendedVideos([]);
+                  }}
+                >
+                  <Video size={20} />
+                  Enter Video URL
                 </button>
-              </form>
-
-              <div className="example-urls">
-                <p className="example-label">Try these example videos:</p>
-                <div className="example-links">
-                  <button 
-                    className="example-link"
-                    onClick={() => setVideoUrl('https://www.youtube.com/watch?v=SqcY0GlETPk')}
-                  >
-                    React Tutorial
-                  </button>
-                  <button 
-                    className="example-link"
-                    onClick={() => setVideoUrl('https://www.youtube.com/watch?v=_uQrJ0TkZlc')}
-                  >
-                    Python Basics
-                  </button>
-                  <button 
-                    className="example-link"
-                    onClick={() => setVideoUrl('https://www.youtube.com/watch?v=YoCv4HCNI0o')}
-                  >
-                    Design Principles
-                  </button>
-                </div>
+                <button 
+                  className={`mode-btn ${inputMode === 'topic' ? 'active' : ''}`}
+                  onClick={() => setInputMode('topic')}
+                >
+                  <BrainCircuit size={20} />
+                  Search by Topic
+                </button>
               </div>
+
+              {inputMode === 'url' ? (
+                <>
+                  <div className="input-instructions">
+                    <Video size={48} className="instruction-icon" />
+                    <h2>Paste a YouTube Video URL</h2>
+                    <p>We'll analyze the video and create a complete lesson with notes, quizzes, and a curated playlist.</p>
+                  </div>
+
+                  <form className="generator-form" onSubmit={(e) => {
+                    e.preventDefault();
+                    if (videoUrl.trim()) {
+                      window.location.href = `/generator?url=${encodeURIComponent(videoUrl)}`;
+                    }
+                  }}>
+                    <div className="url-input-wrapper">
+                      <Video size={24} className="input-icon" />
+                      <input
+                        type="url"
+                        placeholder="https://www.youtube.com/watch?v=..."
+                        value={videoUrl}
+                        onChange={(e) => setVideoUrl(e.target.value)}
+                        className="url-input"
+                        required
+                      />
+                    </div>
+                    <button type="submit" className="btn-primary btn-large btn-generate">
+                      <BrainCircuit size={20} />
+                      Generate Lesson
+                    </button>
+                  </form>
+
+                  <div className="example-urls">
+                    <p className="example-label">Try these example videos:</p>
+                    <div className="example-links">
+                      <button 
+                        className="example-link"
+                        onClick={() => setVideoUrl('https://www.youtube.com/watch?v=SqcY0GlETPk')}
+                      >
+                        React Tutorial
+                      </button>
+                      <button 
+                        className="example-link"
+                        onClick={() => setVideoUrl('https://www.youtube.com/watch?v=_uQrJ0TkZlc')}
+                      >
+                        Python Basics
+                      </button>
+                      <button 
+                        className="example-link"
+                        onClick={() => setVideoUrl('https://www.youtube.com/watch?v=YoCv4HCNI0o')}
+                      >
+                        Design Principles
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="input-instructions">
+                    <BrainCircuit size={48} className="instruction-icon" />
+                    <h2>Search for Educational Videos by Topic</h2>
+                    <p>Enter any topic you want to learn about, and we'll recommend top-rated educational videos.</p>
+                  </div>
+
+                  <form className="generator-form" onSubmit={(e) => {
+                    e.preventDefault();
+                    handleTopicSearch();
+                  }}>
+                    <div className="url-input-wrapper">
+                      <BrainCircuit size={24} className="input-icon" />
+                      <input
+                        type="text"
+                        placeholder="e.g., Array, Web Development, Machine Learning..."
+                        value={topic}
+                        onChange={(e) => setTopic(e.target.value)}
+                        className="url-input"
+                        required
+                      />
+                    </div>
+                    <button type="submit" className="btn-primary btn-large btn-generate">
+                      <Sparkles size={20} />
+                      Find Top Videos
+                    </button>
+                  </form>
+
+                  <div className="example-urls">
+                    <p className="example-label">Popular topics:</p>
+                    <div className="example-links">
+                      <button 
+                        className="example-link"
+                        onClick={() => {
+                          setTopic('Array');
+                          setRecommendedVideos(getRecommendedVideos('Array'));
+                        }}
+                      >
+                        Arrays
+                      </button>
+                      <button 
+                        className="example-link"
+                        onClick={() => {
+                          setTopic('Web Development');
+                          setRecommendedVideos(getRecommendedVideos('Web Development'));
+                        }}
+                      >
+                        Web Development
+                      </button>
+                      <button 
+                        className="example-link"
+                        onClick={() => {
+                          setTopic('Machine Learning');
+                          setRecommendedVideos(getRecommendedVideos('Machine Learning'));
+                        }}
+                      >
+                        Machine Learning
+                      </button>
+                      <button 
+                        className="example-link"
+                        onClick={() => {
+                          setTopic('React');
+                          setRecommendedVideos(getRecommendedVideos('React'));
+                        }}
+                      >
+                        React
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Display Recommended Videos */}
+                  {recommendedVideos.length > 0 && (
+                    <div className="recommended-videos-section">
+                      <h3 className="recommended-title">
+                        <Sparkles size={24} />
+                        Top Recommended Videos for "{topic}"
+                      </h3>
+                      <div className="playlist-grid">
+                        {recommendedVideos.map((video, index) => (
+                          <div key={video.id} className="playlist-card" data-aos="zoom-in" data-aos-delay={index * 50}>
+                            <a 
+                              href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="playlist-thumbnail"
+                            >
+                              <img src={video.thumbnail} alt={video.title} />
+                              <div className="video-duration">{video.duration}</div>
+                              <div className="play-overlay">
+                                <Play size={32} />
+                              </div>
+                            </a>
+                            <div className="playlist-info">
+                              <h3>{video.title}</h3>
+                              <p className="playlist-channel">{video.channel}</p>
+                              <p className="playlist-views">{video.views} views</p>
+                              <div className="video-actions">
+                                <a 
+                                  href={`https://www.youtube.com/watch?v=${video.videoId}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="btn-outline btn-small"
+                                >
+                                  <Play size={16} />
+                                  Watch Video
+                                </a>
+                                <button
+                                  className="btn-primary btn-small"
+                                  onClick={() => {
+                                    window.location.href = `/generator?url=${encodeURIComponent(`https://www.youtube.com/watch?v=${video.videoId}`)}`;
+                                  }}
+                                >
+                                  <BrainCircuit size={16} />
+                                  Generate Lesson
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

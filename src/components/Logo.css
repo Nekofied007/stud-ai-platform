@@ -20,8 +20,8 @@
   position: relative !important;
   display: inline-block !important;
   font-size: 2.5rem !important;
-  font-weight: 800 !important;
-  color: #1a1a1a !important;
+  font-weight: 900 !important;
+  color: #FF8C5A !important;
   letter-spacing: 0.02em;
   line-height: 1 !important;
   margin: 0 !important;
@@ -29,10 +29,10 @@
 }
 
 .logo-text strong {
-  font-weight: 800;
+  font-weight: 900;
   position: relative;
   z-index: 1;
-  color: #1a1a1a;
+  color: #FF8C5A;
 }
 
 /* Logo Tagline */
