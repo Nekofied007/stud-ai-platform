@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Navbar from './components/Navbar';
+import Logo from './components/Logo';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Courses from './pages/Courses';
@@ -27,6 +28,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <Logo />
         <Navbar />
         <main className="main-content">
           <Routes>
