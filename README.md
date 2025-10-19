@@ -1,5 +1,7 @@
 # STUD - An AI-Powered Learning Platform
 
+> **Latest Update (Oct 19, 2025)**: Enhanced with smooth scroll animations, 15 comprehensive quiz questions, 10 detailed learning notes, and 10 curated YouTube videos with working links! 🎉
+
 **Brand Name:** STUD (Studying Till Unlocking Dreams)  
 **Tagline:** "From Confusion to Clarity"
 
