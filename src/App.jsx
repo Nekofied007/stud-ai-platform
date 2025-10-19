@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import Navbar from './components/Navbar';
 import Logo from './components/Logo';
 import Footer from './components/Footer';
+import AIChat from './components/AIChat';
 import Home from './pages/Home';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
@@ -42,6 +43,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <AIChat />
       </div>
     </Router>
   );
