@@ -50,18 +50,18 @@ const SparklesText = ({
     <div
       className={cn("text-6xl font-bold", className)}
       {...props}
-      style={
-        {
-          "--sparkles-first-color": `${colors.first}`,
-          "--sparkles-second-color": `${colors.second}`,
-        }
-      }
+      style={{
+        "--sparkles-first-color": `${colors.first}`,
+        "--sparkles-second-color": `${colors.second}`,
+        position: 'relative',
+        display: 'inline-block',
+      }}
     >
-      <span className="relative inline-block">
+      <span style={{ position: 'relative', display: 'inline-block' }}>
         {sparkles.map((sparkle) => (
           <Sparkle key={sparkle.id} {...sparkle} />
         ))}
-        <strong>{text}</strong>
+        <strong style={{ position: 'relative', zIndex: 1 }}>{text}</strong>
       </span>
     </div>
   );
@@ -71,8 +71,14 @@ const Sparkle = ({ id, x, y, color, delay, scale }) => {
   return (
     <motion.svg
       key={id}
-      className="pointer-events-none absolute z-20"
-      initial={{ opacity: 0, left: x, top: y }}
+      style={{
+        position: 'absolute',
+        left: x,
+        top: y,
+        pointerEvents: 'none',
+        zIndex: 10,
+      }}
+      initial={{ opacity: 0 }}
       animate={{
         opacity: [0, 1, 0],
         scale: [0, scale, 0],
