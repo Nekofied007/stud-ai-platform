@@ -4,7 +4,7 @@
 
 /* Hero Section */
 .hero {
-  background: linear-gradient(135deg, rgba(255, 140, 90, 0.05) 0%, rgba(78, 205, 196, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(255, 245, 230, 0.3) 0%, rgba(255, 179, 153, 0.15) 50%, rgba(212, 232, 212, 0.2) 100%);
   padding: var(--spacing-2xl) 0;
 }
 
@@ -22,7 +22,10 @@
 }
 
 .hero-title .highlight {
-  color: var(--color-primary-orange);
+  background: linear-gradient(135deg, #FF6B4A 0%, #FF9247 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   position: relative;
 }
 
@@ -57,7 +60,10 @@
 .stat-number {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-primary-orange);
+  background: linear-gradient(135deg, #FF6B4A 0%, #FF9247 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   line-height: 1;
 }
 
@@ -86,7 +92,7 @@
 /* Custom Course Generator Section */
 .custom-generator {
   padding: var(--spacing-2xl) 0;
-  background: linear-gradient(135deg, rgba(91, 155, 213, 0.05) 0%, rgba(155, 89, 182, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(45, 125, 98, 0.08) 0%, rgba(139, 168, 136, 0.08) 50%, rgba(212, 232, 212, 0.12) 100%);
 }
 
 .generator-content {

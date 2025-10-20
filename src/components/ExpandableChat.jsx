@@ -34,10 +34,10 @@ export const ExpandableChat = ({ className, position = 'bottom-right', size = 'm
 		width: typeof dims.width === 'number' ? `${dims.width}px` : dims.width,
 		height: typeof dims.height === 'number' ? `${dims.height}px` : dims.height,
 		background: '#fff',
-		border: '1px solid #e5e7eb',
-		borderRadius: 12,
+		border: '1px solid #E8E4E0',
+		borderRadius: 14,
 		overflow: 'hidden',
-		boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
+		boxShadow: '0 12px 36px rgba(44, 36, 32, 0.18)',
 		transition: 'opacity 180ms ease, transform 180ms ease',
 		opacity: isOpen ? 1 : 0,
 		transform: isOpen ? 'translateY(0)' : 'translateY(8px)',
@@ -75,7 +75,7 @@ export const ExpandableChat = ({ className, position = 'bottom-right', size = 'm
 };
 
 export const ExpandableChatHeader = ({ className, ...props }) => (
-	<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 16, borderBottom: '1px solid #e5e7eb' }} className={className} {...props} />
+	<div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: 16, borderBottom: '1px solid #D9D5D2' }} className={className} {...props} />
 );
 
 export const ExpandableChatBody = ({ className, ...props }) => (
@@ -83,7 +83,7 @@ export const ExpandableChatBody = ({ className, ...props }) => (
 );
 
 export const ExpandableChatFooter = ({ className, ...props }) => (
-	<div style={{ padding: 16, borderTop: '1px solid #e5e7eb' }} className={className} {...props} />
+	<div style={{ padding: 16, borderTop: '1px solid #D9D5D2' }} className={className} {...props} />
 );
 
 export const ExpandableChatToggle = ({ className, icon, isOpen, toggleChat, ...props }) => (
@@ -95,13 +95,22 @@ export const ExpandableChatToggle = ({ className, icon, isOpen, toggleChat, ...p
 			height: 56,
 			borderRadius: '50%',
 			border: 'none',
-			background: '#FF8C5A',
+			background: 'linear-gradient(135deg, #FF6B4A 0%, #FF9247 100%)',
 			color: '#fff',
 			display: 'inline-flex',
 			alignItems: 'center',
 			justifyContent: 'center',
-			boxShadow: '0 10px 25px rgba(0,0,0,.25)',
+			boxShadow: '0 8px 20px rgba(255, 107, 74, 0.35)',
 			cursor: 'pointer',
+			transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+		}}
+		onMouseEnter={(e) => {
+			e.currentTarget.style.transform = 'scale(1.05)';
+			e.currentTarget.style.boxShadow = '0 12px 28px rgba(255, 107, 74, 0.45)';
+		}}
+		onMouseLeave={(e) => {
+			e.currentTarget.style.transform = 'scale(1)';
+			e.currentTarget.style.boxShadow = '0 8px 20px rgba(255, 107, 74, 0.35)';
 		}}
 		className={className}
 		{...props}

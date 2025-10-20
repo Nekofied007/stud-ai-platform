@@ -4,7 +4,7 @@
 }
 
 .my-learning-header {
-  background: linear-gradient(135deg, rgba(78, 205, 196, 0.1) 0%, rgba(91, 155, 213, 0.1) 100%);
+  background: linear-gradient(135deg, rgba(255, 245, 230, 0.4) 0%, rgba(255, 179, 153, 0.2) 50%, rgba(255, 212, 196, 0.3) 100%);
   padding: var(--spacing-2xl) 0;
   text-align: center;
 }
@@ -27,7 +27,7 @@
 }
 
 .overview-card {
-  background-color: var(--color-white);
+  background: var(--gradient-card, linear-gradient(135deg, #FFFFFF 0%, #FFF9F5 100%));
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   display: flex;
@@ -40,8 +40,8 @@
 
 .overview-card:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--color-primary-blue);
+  box-shadow: 0 12px 24px rgba(255, 107, 74, 0.15);
+  border-color: var(--color-sunrise-coral, #FF8E72);
 }
 
 .overview-icon {
@@ -107,12 +107,13 @@
 }
 
 .analytics-link-section {
-  background: linear-gradient(135deg, var(--color-primary-blue) 0%, var(--color-primary-purple) 100%);
+  background: linear-gradient(135deg, #FF6B4A 0%, #FF9247 50%, #E85D75 100%);
   color: var(--color-white);
   padding: var(--spacing-2xl);
   border-radius: var(--radius-lg);
   text-align: center;
   margin-top: var(--spacing-2xl);
+  box-shadow: 0 12px 30px rgba(255, 107, 74, 0.3);
 }
 
 .analytics-link-section h3 {

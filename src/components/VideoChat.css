@@ -1,23 +1,23 @@
-.vchat-header{background:linear-gradient(135deg,#FF8C5A 0%,#5B9BD5 100%);color:#fff}
+.vchat-header{background:linear-gradient(135deg,#FF6B4A 0%,#FF9247 50%,#E85D75 100%);color:#fff;box-shadow:0 4px 12px rgba(255,107,74,0.25)}
 .vchat-header .vchat-title{font-weight:800}
 .vchat-header .vchat-sub{opacity:.95;font-size:.875rem}
 .vchat-body{background:#fafafa}
-.vchat-context{font-size:.8rem;color:#6b7280;background:#fff;border-left:4px solid #5B9BD5;margin:12px;border-radius:8px;padding:8px 12px}
+.vchat-context{font-size:.8rem;color:#786F69;background:#fff;border-left:4px solid #2D7D62;margin:12px;border-radius:10px;padding:8px 12px}
 .vchat-messages{display:flex;flex-direction:column;gap:10px;padding:12px}
 .vmsg{display:flex;flex-direction:column;gap:4px;max-width:78%}
 .vmsg-user{align-self:flex-end}
-.vmsg-bubble{background:#fff;border-radius:14px;padding:10px 12px;box-shadow:0 1px 2px rgba(0,0,0,.06)}
-.vmsg-user .vmsg-bubble{background:#FF8C5A;color:#fff}
-.vmsg-time{font-size:.7rem;color:#6b7280}
+.vmsg-bubble{background:#fff;border-radius:16px;padding:10px 12px;box-shadow:0 2px 4px rgba(44,36,32,.08)}
+.vmsg-user .vmsg-bubble{background:linear-gradient(135deg,#FF6B4A 0%,#FF8E72 100%);color:#fff}
+.vmsg-time{font-size:.7rem;color:#9C938C}
 .vchat-footer{background:#fff}
 .vchat-input-row{display:flex;gap:8px}
-.vchat-input{flex:1;border:2px solid #e5e7eb;border-radius:9999px;padding:10px 14px;font-size:.95rem;outline:none}
-.vchat-input:focus{border-color:#5B9BD5;box-shadow:0 0 0 3px rgba(91,155,213,.12)}
-.vchat-send{width:40px;height:40px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FF8C5A 0%,#5B9BD5 100%);color:#fff;cursor:pointer}
+.vchat-input{flex:1;border:2px solid #D9D5D2;border-radius:9999px;padding:10px 14px;font-size:.95rem;outline:none}
+.vchat-input:focus{border-color:#FF6B4A;box-shadow:0 0 0 3px rgba(255,107,74,.12)}
+.vchat-send{width:40px;height:40px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FF6B4A 0%,#FF9247 100%);color:#fff;cursor:pointer;box-shadow:0 4px 12px rgba(255,107,74,0.3)}
 .vchat-send:disabled{opacity:.6;cursor:not-allowed}
-.vchat-watch{display:inline-flex;gap:6px;align-items:center;margin-top:6px;color:#5B9BD5;text-decoration:none;font-weight:600}
+.vchat-watch{display:inline-flex;gap:6px;align-items:center;margin-top:6px;color:#2D7D62;text-decoration:none;font-weight:600}
 .dots{display:inline-flex;gap:4px}
-.dots i{width:8px;height:8px;border-radius:50%;background:#5B9BD5;display:block;animation:bdots 1.2s infinite ease-in-out}
+.dots i{width:8px;height:8px;border-radius:50%;background:#FF9247;display:block;animation:bdots 1.2s infinite ease-in-out}
 .dots i:nth-child(2){animation-delay:.15s}
 .dots i:nth-child(3){animation-delay:.3s}
 @keyframes bdots{0%,60%,100%{transform:translateY(0);opacity:.8}30%{transform:translateY(-6px);opacity:1}}
