@@ -175,18 +175,34 @@
 
 .btn-generate {
   width: 100%;
-  background: linear-gradient(135deg, var(--color-primary-orange), var(--color-primary-purple));
+  background: var(--gradient-warm-glow, linear-gradient(135deg, #FF9247 0%, #FFB399 100%));
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 30px rgba(255, 107, 74, 0.25);
 }
 
 .btn-generate:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 16px 36px rgba(255, 107, 74, 0.35);
+  background: linear-gradient(135deg, #FF8E72 0%, #FFD4C4 100%);
+}
+
+.btn-generate:focus-visible {
+  outline: 2px solid rgba(255, 107, 74, 0.65);
+  outline-offset: 2px;
+}
+
+.btn-generate:disabled,
+.btn-generate[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* Example URLs */
