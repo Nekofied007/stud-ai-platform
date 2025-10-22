@@ -93,17 +93,34 @@
 .custom-generator {
   padding: var(--spacing-2xl) 0;
   background: transparent;
-  border: none;
-  box-shadow: none;
 }
 
 .generator-content {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+}
+
+/* Hard reset to remove any visible rectangle around the generator section */
+.custom-generator,
+.custom-generator .container,
+.generator-content,
+.generator-header {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.custom-generator::before,
+.custom-generator::after,
+.generator-content::before,
+.generator-content::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
 }
 
 .generator-header {
