@@ -454,7 +454,6 @@
 .cta-section {
   background: linear-gradient(135deg, var(--color-primary-orange) 0%, var(--color-primary-purple) 100%);
   padding: var(--spacing-2xl) 0;
-  color: var(--color-white);
 }
 
 .cta-content {
@@ -462,16 +461,21 @@
 }
 
 .cta-content h2 {
-  color: var(--color-white);
   font-size: 2.5rem;
   margin-bottom: var(--spacing-md);
 }
 
 .cta-content p {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.9);
   margin-bottom: var(--spacing-xl);
 }
+
+/* Theme-specific contrast for CTA text */
+:root[data-theme="dark"] .cta-section .cta-content h2 { color: #ffffff; }
+:root[data-theme="dark"] .cta-section .cta-content p { color: rgba(255,255,255,0.9); }
+
+:root[data-theme="light"] .cta-section .cta-content h2 { color: #000000; }
+:root[data-theme="light"] .cta-section .cta-content p { color: #000000; }
 
 .cta-content .btn-primary {
   background-color: var(--color-white);
