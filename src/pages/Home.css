@@ -136,8 +136,17 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--spacing-md);
-  color: white;
+  color: white; /* default - overridden by theme rules below */
   animation: pulse 2s ease-in-out infinite;
+}
+
+/* Theme-specific icon color: white in dark, black in light */
+:root[data-theme="light"] .generator-icon {
+  color: #000;
+}
+
+:root[data-theme="dark"] .generator-icon {
+  color: #fff;
 }
 
 @keyframes pulse {
