@@ -48,10 +48,27 @@
   outline: none;
   padding: 0;
   font-size: 1rem;
+  background-color: transparent; /* prevent white box in dark mode */
+  color: var(--color-text-dark);
 }
 
 .search-bar svg {
   color: var(--color-text-light);
+}
+
+.search-bar input::placeholder {
+  color: var(--color-text-light);
+  opacity: 0.9;
+}
+
+/* Dark theme: ensure input text/placeholder are light and background remains transparent */
+:root[data-theme="dark"] .search-bar input {
+  background-color: transparent;
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .search-bar input::placeholder {
+  color: rgba(255,255,255,0.8);
 }
 
 /* Ensure search bar blends with dark theme */
