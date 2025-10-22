@@ -92,7 +92,7 @@
 /* Custom Course Generator Section */
 .custom-generator {
   padding: var(--spacing-2xl) 0;
-  background: linear-gradient(135deg, rgba(45, 125, 98, 0.08) 0%, rgba(139, 168, 136, 0.08) 50%, rgba(212, 232, 212, 0.12) 100%);
+  background: transparent;
 }
 
 .generator-content {
