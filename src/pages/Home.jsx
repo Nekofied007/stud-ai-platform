@@ -186,61 +186,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Core Features Section */}
-      <section className="core-features">
-        <div className="container">
-          <h2 className="section-title" data-aos="fade-up">Why Choose STUD?</h2>
-          <p className="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-            Four pillars that make learning effective and engaging
-          </p>
-
-          <div className="features-grid">
-            <div className="feature-card" data-aos="zoom-in" data-aos-delay="200">
-              <div className="feature-icon" style={{ backgroundColor: 'rgba(255, 140, 90, 0.1)' }}>
-                <BookOpen size={32} style={{ color: 'var(--color-primary-orange)' }} />
-              </div>
-              <h3>Content Collection</h3>
-              <p>
-                We gather the best free learning content from across the web, 
-                carefully selecting high-quality videos and resources.
-              </p>
-            </div>
-
-            <div className="feature-card" data-aos="zoom-in" data-aos-delay="300">
-              <div className="feature-icon" style={{ backgroundColor: 'rgba(78, 205, 196, 0.1)' }}>
-                <Target size={32} style={{ color: 'var(--color-primary-green)' }} />
-              </div>
-              <h3>Structured Courses</h3>
-              <p>
-                Our AI organizes content into easy-to-follow modules and lessons, 
-                creating a clear path from beginner to expert.
-              </p>
-            </div>
-
-            <div className="feature-card" data-aos="zoom-in" data-aos-delay="400">
-              <div className="feature-icon" style={{ backgroundColor: 'rgba(91, 155, 213, 0.1)' }}>
-                <Brain size={32} style={{ color: 'var(--color-primary-blue)' }} />
-              </div>
-              <h3>Interactive Learning</h3>
-              <p>
-                Stay engaged with AI-powered quizzes and active learning tasks 
-                that reinforce key concepts.
-              </p>
-            </div>
-
-            <div className="feature-card" data-aos="zoom-in" data-aos-delay="500">
-              <div className="feature-icon" style={{ backgroundColor: 'rgba(155, 89, 182, 0.1)' }}>
-                <BarChart3 size={32} style={{ color: 'var(--color-primary-purple)' }} />
-              </div>
-              <h3>Personalized Feedback</h3>
-              <p>
-                Track your progress with personalized roadmaps and instant feedback 
-                on quizzes and assignments.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Core Features Section removed per request */}
 
       {/* Testimonials Section */}
       <section className="testimonials">
