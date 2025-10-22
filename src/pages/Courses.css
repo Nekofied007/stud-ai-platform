@@ -54,6 +54,12 @@
   color: var(--color-text-light);
 }
 
+/* Ensure search bar blends with dark theme */
+:root[data-theme="dark"] .search-bar {
+  background-color: var(--color-background-secondary);
+  border-color: var(--color-gray-medium);
+}
+
 .filter-toggle {
   white-space: nowrap;
 }

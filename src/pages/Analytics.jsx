@@ -116,7 +116,7 @@ const Analytics = () => {
                         <Link to={`/learn/${course.id}`} className="btn-primary">
                           Continue Learning
                         </Link>
-                        <Link to={`/course/${course.id}`} className="btn-outline">
+                        <Link to={`/course/${course.id}`} className="btn-secondary">
                           View Details
                         </Link>
                       </div>
