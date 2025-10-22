@@ -103,10 +103,6 @@ const Courses = () => {
         </div>
 
         <div className="courses-results">
-          <div className="results-header">
-            <p>{filteredCourses.length} courses found</p>
-          </div>
-
           {filteredCourses.length > 0 ? (
             <div className="courses-grid">
               {filteredCourses.map(course => (

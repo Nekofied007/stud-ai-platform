@@ -142,14 +142,7 @@
   width: 100%;
 }
 
-.results-header {
-  margin-bottom: var(--spacing-md);
-}
-
-.results-header p {
-  color: var(--color-text-light);
-  font-weight: 500;
-}
+/* results header removed */
 
 .courses-grid {
   display: grid;
