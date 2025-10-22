@@ -73,7 +73,7 @@ const MyLearning = () => {
         <div className="analytics-link-section">
           <h3>Want to see detailed analytics?</h3>
           <p>Track your progress, view your learning roadmap, and get personalized recommendations</p>
-          <Link to="/analytics" className="btn-secondary">
+          <Link to="/analytics" className="btn-primary">
             View Analytics Dashboard
           </Link>
         </div>

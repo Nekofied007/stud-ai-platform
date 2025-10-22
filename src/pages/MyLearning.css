@@ -107,13 +107,14 @@
 }
 
 .analytics-link-section {
-  background: linear-gradient(135deg, #FF6B4A 0%, #FF9247 50%, #E85D75 100%);
-  color: var(--color-white);
+  background: transparent;
+  color: var(--color-text-dark);
   padding: var(--spacing-2xl);
   border-radius: 0;
   text-align: center;
   margin-top: var(--spacing-2xl);
-  box-shadow: 0 12px 30px rgba(255, 107, 74, 0.3);
+  box-shadow: none;
+  border: none;
 }
 
 .analytics-link-section h3 {
