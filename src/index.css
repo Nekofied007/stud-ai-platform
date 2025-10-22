@@ -57,11 +57,11 @@
   --spacing-xl: 3rem;
   --spacing-2xl: 4rem;
   
-  /* Border Radius - Avoiding 8px default */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  /* Border Radius - Sharp corners design */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
   --radius-full: 9999px;
   
   /* Shadows - Warmer tones */
@@ -136,7 +136,7 @@ p {
 }
 
 button {
-  border-radius: var(--radius-md);
+  border-radius: 0;
   border: none;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
@@ -195,7 +195,7 @@ input, textarea, select {
   font-size: 1rem;
   padding: 0.75rem 1rem;
   border: 2px solid var(--color-gray-medium);
-  border-radius: var(--radius-md);
+  border-radius: 0;
   transition: border-color 0.3s ease;
   width: 100%;
 }

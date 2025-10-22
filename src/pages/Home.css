@@ -78,7 +78,7 @@
 }
 
 .hero-illustration {
-  border-radius: var(--radius-xl);
+  border-radius: 0;
   overflow: hidden;
   box-shadow: var(--shadow-xl);
 }
@@ -154,7 +154,7 @@
   padding: 1.25rem 1.25rem 1.25rem 3.5rem;
   font-size: 1rem;
   border: 2px solid var(--color-gray-medium);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   transition: all 0.3s ease;
 }
 
@@ -186,10 +186,10 @@
   justify-content: center;
   gap: var(--spacing-lg);
   padding: var(--spacing-lg);
-  background-color: var(--color-white);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
-  border: 2px solid var(--color-gray-medium);
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
 }
 
 .gen-feature {
@@ -237,7 +237,7 @@
   text-align: center;
   position: relative;
   padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   border: 2px solid var(--color-gray-medium);
   background-color: var(--color-white);
   transition: all 0.3s ease;
@@ -323,7 +323,7 @@
 .feature-card {
   text-align: center;
   padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   border: 2px solid var(--color-gray-medium);
   transition: all 0.3s ease;
   background-color: var(--color-white);
@@ -370,7 +370,7 @@
 .testimonial-card {
   background-color: var(--color-white);
   padding: var(--spacing-xl);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   border: 2px solid var(--color-gray-medium);
   box-shadow: var(--shadow-md);
   transition: all 0.3s ease;

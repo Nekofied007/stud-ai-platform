@@ -28,7 +28,7 @@
 
 .overview-card {
   background: var(--gradient-card, linear-gradient(135deg, #FFFFFF 0%, #FFF9F5 100%));
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   padding: var(--spacing-lg);
   display: flex;
   align-items: center;
@@ -47,7 +47,7 @@
 .overview-icon {
   width: 60px;
   height: 60px;
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +86,7 @@
   text-align: center;
   padding: var(--spacing-2xl);
   background-color: var(--color-white);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   border: 2px solid var(--color-gray-medium);
   box-shadow: var(--shadow-md);
 }
@@ -110,7 +110,7 @@
   background: linear-gradient(135deg, #FF6B4A 0%, #FF9247 50%, #E85D75 100%);
   color: var(--color-white);
   padding: var(--spacing-2xl);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   text-align: center;
   margin-top: var(--spacing-2xl);
   box-shadow: 0 12px 30px rgba(255, 107, 74, 0.3);
